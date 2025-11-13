@@ -1,7 +1,7 @@
 import s from './ThemeToggle.module.css';
 import {useThemeContext} from "@/common/components/theme/themeProvider/themeProvider.tsx";
 
-export const ThemeToggle: React.FC = () => {
+export const ThemeToggle = () => {
     const { isDark, toggleTheme } = useThemeContext();
 
     return (
