@@ -1,12 +1,12 @@
-import { Path } from '@/common/Routing/Routing.tsx';
+import {Path} from '@/common/Routing/Routing.tsx';
 import s from './Header.module.css';
-import { NavLink } from 'react-router-dom';
-import { TMDBLogo } from '@/widgets/Header/logo/TMDBLOGO.tsx';
-import { ThemeToggle } from '@/features/theme/ThemeToggle.tsx';
+import {NavLink} from 'react-router-dom';
+import {TMDBLogo} from '@/widgets/Header/logo/TMDBLOGO.tsx';
+import {ThemeToggle} from '@/features/theme/ThemeToggle.tsx';
 
 const navItems = [
   { to: Path.Main, label: 'Main' },
-  { to: Path.CategoryMovies, label: 'Category Movies' },
+  { to: '/category/popular', label: 'Category Movies' },
   { to: Path.FilteredMovies, label: 'Filtered Movies' },
   { to: Path.Search, label: 'Search' },
   { to: Path.Favorites, label: 'Favorites' },

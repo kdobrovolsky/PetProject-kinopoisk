@@ -6,7 +6,7 @@ export const UpcomingMovies = () => {
     const {data} = useFetchUpcomingQuery()
     const navigate = useNavigate();
     const handleViewMore = () => {
-        navigate('/category?type=popular');
+        navigate('/category/upcoming');
     };
     return (
         <section className={s.mainContent}>

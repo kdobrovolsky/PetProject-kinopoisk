@@ -8,7 +8,7 @@ export const TopRatedMovies = () => {
     const {data} = useFetchTopRatedQuery()
     const navigate = useNavigate();
     const handleViewMore = () => {
-        navigate('/category?type=popular');
+        navigate('/category/topRated');
     };
     return (
         <section className={s.mainContent}>

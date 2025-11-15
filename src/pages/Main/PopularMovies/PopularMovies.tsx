@@ -6,7 +6,7 @@ import {useFetchPopularMoviesQuery} from "@/features/api/tmdbApi.ts";
 export const PopularMovies = () => {
     const navigate = useNavigate();
     const handleViewMore = () => {
-        navigate('/category?type=popular');
+        navigate('/category/popular');
     };
     const { data } = useFetchPopularMoviesQuery();
     return (

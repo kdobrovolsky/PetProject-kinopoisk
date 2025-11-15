@@ -6,7 +6,7 @@ export const NowPlayingMovies = () => {
     const {data} = useFetchNowPlayingQuery()
     const navigate = useNavigate();
     const handleViewMore = () => {
-        navigate('/category?type=popular');
+        navigate('/category/now-playing');
     };
     return (
         <section className={s.mainContent}>

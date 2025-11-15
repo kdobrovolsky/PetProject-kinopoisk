@@ -5,7 +5,7 @@ import {NotFound} from "@/pages/NotFound/NotFound.tsx";
 
 export const Path = {
     Main: '/',
-    CategoryMovies: `/category/:type`,
+    CategoryMovies: '/category/:type',
     FilteredMovies: '/filtered',
     Search: '/search',
     Favorites: '/favorites',
