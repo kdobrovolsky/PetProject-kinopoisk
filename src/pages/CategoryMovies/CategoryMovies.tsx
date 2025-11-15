@@ -8,25 +8,27 @@ import s from "./CategoryMovies.module.css";
 import {useNavigate} from "react-router-dom";
 import {useParams} from "react-router";
 import {categoriesTitle} from "@/features/api/tmdbApi.types.ts";
+import {useState} from "react";
+import {Pagination} from "@/common";
 
 export const CategoryMovies = () => {
 
     const navigate = useNavigate();
     const {type = 'popular'} = useParams()
-    const currentType = type || "popular" ;
+    const [page, setPage] = useState(1);
 
-    const dataPopular = useFetchPopularMoviesQuery().data
-    const dataNowPlaying = useFetchNowPlayingQuery().data
-    const dataUpcoming = useFetchUpcomingQuery().data
-    const dataTopRated = useFetchTopRatedQuery().data
+    const {data:dataPopular} = useFetchPopularMoviesQuery(page)
+    const {data:dataNowPlaying} = useFetchNowPlayingQuery(page)
+    const {data:dataUpcoming} = useFetchUpcomingQuery(page)
+    const {data:dataTopRated} = useFetchTopRatedQuery(page)
 
 
     let data;
-    switch (currentType) {
+    switch (type) {
         case "popular":
             data = dataPopular
             break;
-        case "topRated":
+        case "top-rated":
             data = dataTopRated
             break;
         case 'upcoming':
@@ -38,6 +40,9 @@ export const CategoryMovies = () => {
         default:
             data = dataPopular
     }
+
+    console.log(`total pages${data?.total_pages} `)
+    console.log(`total pages${data?.total_results} `)
 
     const handleClickPopular = () => {
         navigate("/category/popular");
@@ -60,32 +65,32 @@ export const CategoryMovies = () => {
             <nav className={s.navigation}>
                 <button
                     onClick={handleClickPopular}
-                    className={`${s.navButton} ${currentType === 'popular' ? s.active : ''}`}
+                    className={`${s.navButton} ${type === 'popular' ? s.active : ''}`}
                 >
                     Popular Movies
                 </button>
                 <button
                     onClick={handleClickTopRated}
-                    className={`${s.navButton} ${currentType === 'top-rated' ? s.active : ''}`}
+                    className={`${s.navButton} ${type === 'top-rated' ? s.active : ''}`}
                 >
                     Top Rated Movies
                 </button>
                 <button
                     onClick={handleClickUpcomingMovies}
-                    className={`${s.navButton} ${currentType === 'upcoming' ? s.active : ''}`}
+                    className={`${s.navButton} ${type === 'upcoming' ? s.active : ''}`}
                 >
                     Upcoming Movies
                 </button>
                 <button
                     onClick={handleClickNowPlayingMovies}
-                    className={`${s.navButton} ${currentType === 'now-playing' ? s.active : ''}`}
+                    className={`${s.navButton} ${type === 'now-playing' ? s.active : ''}`}
                 >
                     Now Playing Movies
                 </button>
             </nav>
 
             {/* Заголовок категории */}
-            <h1 className={s.categoryTitle}>{categoriesTitle[currentType]}</h1>
+            <h1 className={s.categoryTitle}>{categoriesTitle[type]}</h1>
 
             {/* Сетка фильмов */}
             <div className={s.moviesGrid}>
@@ -122,6 +127,7 @@ export const CategoryMovies = () => {
                     </article>
                 ))}
             </div>
+            <Pagination currentPage={page} setCurrentPage={setPage} pagesCount={data?.total_pages || 1}/>
         </div>
     )
 }
