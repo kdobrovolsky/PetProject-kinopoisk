@@ -20,12 +20,15 @@ export const MainHeader = () => {
             setRandomMovie(data.results[randomIndex]);
         }
     }, [data]);
+
     const handleSearchSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (searchQuery.trim()) {
             navigate(`/search?query=${encodeURIComponent(searchQuery)}`);
         }
     };
+
+
     return (
         <section
             className={s.welcomeSection}

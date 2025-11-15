@@ -12,7 +12,7 @@ import {useEffect, useState} from "react";
 import {Pagination} from "@/common";
 
 import {MOVIE_CATEGORIES} from "@/features";
-import {RATING_THRESHOLDS} from "@/shared";
+import {MovieCard} from "@/pages/CategoryMovies/MovieCard/MovieCard.tsx";
 
 export const CategoryMovies = () => {
 
@@ -21,9 +21,9 @@ export const CategoryMovies = () => {
     const [page, setPage] = useState(1);
 
     const {data:dataPopular} = useFetchPopularMoviesQuery(page,{skip: type !== 'popular'});
-    const {data:dataNowPlaying} = useFetchNowPlayingQuery(page,{skip: type !== 'dataNowPlaying'})
+    const {data:dataNowPlaying} = useFetchNowPlayingQuery(page,{skip: type !== 'now-playing'})
     const {data:dataUpcoming} = useFetchUpcomingQuery(page,{skip: type !== 'upcoming'})
-    const {data:dataTopRated} = useFetchTopRatedQuery(page,{skip: type !== 'dataTopRated'})
+    const {data:dataTopRated} = useFetchTopRatedQuery(page,{skip: type !== 'top-rated'})
 
 
     let data;
@@ -65,36 +65,7 @@ export const CategoryMovies = () => {
             </nav>
 
             <h1 className={s.categoryTitle}>{categoriesTitle[type]}</h1>
-            <div className={s.moviesGrid}>
-                {data?.results.map((movie) => (
-                    <article key={movie.id} className={s.movieCard}>
-                        {movie.poster_path ? (
-                            <img
-                                src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
-                                alt={movie.title}
-                                className={s.moviePoster}
-                                loading="lazy"
-                            />
-                        ) : (
-                            <div className={s.posterPlaceholder}>
-                                No Image
-                            </div>
-                        )}
-
-                        <div
-                            className={`${s.movieRatingOverlay} ${
-                                movie.vote_average >= RATING_THRESHOLDS.HIGH ? s.high :
-                                    movie.vote_average >= RATING_THRESHOLDS.MEDIUM ? s.medium : s.low
-                            }`}
-                        >
-                            {movie.vote_average.toFixed(1)}
-                        </div>
-                        <div className={s.movieInfo}>
-                            <h3 className={s.movieTitle}>{movie.title}</h3>
-                        </div>
-                    </article>
-                ))}
-            </div>
+            <MovieCard data={data }/>
             <Pagination currentPage={page} setCurrentPage={setPage} pagesCount={data?.total_pages || 1}/>
         </div>
     )
