@@ -1,15 +1,16 @@
 import s from "@/pages/CategoryMovies/CategoryMovies.module.css";
 import {RATING_THRESHOLDS, useFavorites} from "@/shared";
-import type {TMDBMovie, TMDBMoviesResponse} from "@/features/api/tmdbApi.types.ts";
+import type {FavoriteMovie, TMDBMovie, TMDBMoviesResponse} from "@/features/api/tmdbApi.types.ts";
 
 type PropsMovieCard = {
-    data: TMDBMoviesResponse | undefined
+    data?: TMDBMoviesResponse | undefined
+    movies?: FavoriteMovie[];
     limit?: number;
     className?: string;
 }
 
 export const MovieCard = ({data,limit,className}:PropsMovieCard) => {
-    const movies = limit ? data?.results.slice(0, limit) : data?.results;
+    const displayedMovies  = limit ? data?.results.slice(0, limit) : data?.results;
     const {isFavorite, addFavorite, removeFavorite} = useFavorites();
 
     const handleFavoriteClick = (movie: TMDBMovie) => {
@@ -19,14 +20,14 @@ export const MovieCard = ({data,limit,className}:PropsMovieCard) => {
         addFavorite({
             id: movie.id,
             title: movie.title,
-            poster: movie.poster_path,
+            posterUrl: movie.poster_path,
             voteAverage: movie.vote_average
         });
     }
     }
     return(
         <div className={className ? className : s.moviesGrid}>
-            {movies?.map((movie) => (
+            {displayedMovies?.map((movie) => (
                 <article key={movie.id} className={s.movieCard}>
                     {movie.poster_path ? (
                         <img
@@ -46,7 +47,7 @@ export const MovieCard = ({data,limit,className}:PropsMovieCard) => {
                         onClick={() => handleFavoriteClick(movie)}
                         className={`${s.favoriteButton} ${isFavorite(movie.id) ? s.active : ''}`}
                     >
-                        {isFavorite(movie.id) ? '❤️' : '🤍'}
+                        {isFavorite(movie.id) ? '🧡' : '🤍'}
                     </button>
                     <div
                         className={`${s.movieRatingOverlay} ${
