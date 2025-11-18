@@ -25,6 +25,13 @@ export const Search = () => {
         }
     }, [queryValue]);
 
+    useEffect(() => {
+        if (page >= 1 && searchQuery.trim()) {
+            triggerSearch({query:searchQuery, page})
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    }, [page]);
+
 
     const handleSearchSubmit =async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -44,16 +51,9 @@ export const Search = () => {
         }
     };
 
-    useEffect(() => {
-        if (page >= 1 && searchQuery.trim()) {
-            triggerSearch({query:searchQuery, page})
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-    }, [page]);
-
     const showData = isSearching ? data : null;
     const hasResults = !!(showData?.results?.length);
-
+    const shouldShowResults = (!!data?.results.length && data.results.length > 0) && isSearching && hasResults;
 
     return (
       <div className={s.container}>
@@ -62,7 +62,7 @@ export const Search = () => {
           {/*условный рендр вынесен в отдельный компонент*/}
           <SearchResults isSearching={isSearching} searchQuery={searchQuery} hasResults={hasResults} />
 
-          {(data?.results.length && data.results.length > 0) && isSearching && hasResults && (
+          {shouldShowResults && (
               <div>
                   <h2 className={s.resultsTitle}>{`Results for "${searchQuery}"`}</h2>
                   <MovieCard data={data}/>

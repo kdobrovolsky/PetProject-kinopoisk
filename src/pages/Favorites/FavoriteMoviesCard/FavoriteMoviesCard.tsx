@@ -1,14 +1,12 @@
 import s from "@/pages/CategoryMovies/CategoryMovies.module.css";
 import { RATING_THRESHOLDS, useFavorites } from "@/shared";
-import type { FavoriteMovie } from "@/features/api/tmdbApi.types.ts";
 
 type Props = {
-    movies: FavoriteMovie[];
     className?: string;
 }
 
-export const FavoriteMoviesCard = ({ movies, className }: Props) => {
-    const {  removeFavorite } = useFavorites();
+export const FavoriteMoviesCard = ({  className }: Props) => {
+    const {  removeFavorite, favorites } = useFavorites();
 
     const handleFavoriteClick = (movieId: number) => {
         removeFavorite(movieId);
@@ -16,7 +14,7 @@ export const FavoriteMoviesCard = ({ movies, className }: Props) => {
 
     return (
         <div className={className ? className : s.moviesGrid}>
-            {movies.map((movie) => (
+            {favorites.map((movie) => (
                 <article key={movie.id} className={s.movieCard}>
                     {movie.posterUrl ? (
                         <img
