@@ -1,2 +1,2 @@
-export { getPaginationPages } from './utils/getPaginationPages.ts';
-export {Pagination} from './components/Pagination/Pagination.tsx'
+export { getPaginationPages } from '@/shared/utils/getPaginationPages.ts';
+export { Pagination } from './components/Pagination/Pagination.tsx';

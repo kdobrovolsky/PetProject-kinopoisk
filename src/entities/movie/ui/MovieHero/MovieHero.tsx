@@ -1,6 +1,6 @@
 import s from './MovieHero.module.css';
 import { useNavigate } from 'react-router-dom';
-import { useFetchMovieDetailsQuery } from '@/features/api/tmdbApi.ts';
+import { useFetchMovieDetailsQuery } from '@/shared/api/tmdbApi.ts';
 
 type Props = {
   movieId: number;

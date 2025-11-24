@@ -1,4 +1,4 @@
-import { useFetchCreditsQuery } from '@/features/api/tmdbApi.ts';
+import { useFetchCreditsQuery } from '@/shared/api/tmdbApi.ts';
 import s from './MovieDetailsActor.module.css';
 
 type Props = {

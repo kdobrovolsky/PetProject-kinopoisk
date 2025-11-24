@@ -1,2 +1,2 @@
-export { MOVIE_CATEGORIES } from './movies/constants/moviesConstants.ts';
-export * from './api/tmdbApi.ts';
+export { MOVIE_CATEGORIES } from '../shared/constants/moviesConstants/moviesConstants.ts';
+export * from '@/shared/api/tmdbApi.ts';

@@ -1,5 +1,5 @@
 import { type ChangeEvent, type FormEvent, useEffect, useState } from 'react';
-import { useLazyFetchSearchMoviesQuery } from '@/features/api/tmdbApi.ts';
+import { useLazyFetchSearchMoviesQuery } from '@/shared/api/tmdbApi.ts';
 import s from './Search.module.css';
 import { Pagination } from '@/common';
 import { useSearchParams } from 'react-router';

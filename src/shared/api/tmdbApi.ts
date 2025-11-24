@@ -7,7 +7,7 @@ import type {
   SearchMoviesParams,
   SimilarMoviesResponse,
   TMDBMoviesResponse,
-} from '@/features/api/tmdbApi.types.ts';
+} from '@/shared/api/tmdbApi.types.ts';
 
 export const tmdbApi = createApi({
   reducerPath: 'tmdbApi',

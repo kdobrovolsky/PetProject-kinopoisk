@@ -1,6 +1,6 @@
 import s from '@/pages/CategoryMovies/CategoryMovies.module.css';
 import { RATING_THRESHOLDS, useFavorites } from '@/shared';
-import type { FavoriteMovie, TMDBMovie, TMDBMoviesResponse } from '@/features/api/tmdbApi.types.ts';
+import type { FavoriteMovie, TMDBMovie, TMDBMoviesResponse } from '@/shared/api/tmdbApi.types.ts';
 import { useNavigate } from 'react-router-dom';
 
 type PropsMovieCard = {

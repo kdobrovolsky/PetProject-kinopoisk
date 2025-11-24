@@ -4,9 +4,9 @@ import { useParams } from 'react-router';
 import { useEffect, useState } from 'react';
 import { Pagination } from '@/common';
 import { MOVIE_CATEGORIES } from '@/features';
-import { categoriesTitle } from '@/features/api/tmdbApi.types.ts';
+import { categoriesTitle } from '@/shared/api/tmdbApi.types.ts';
 import { MovieCard } from '@/entities/movie/ui';
-import { useCategoryData } from '@/features/movies/hooks/useCategoryData.ts';
+import { useCategoryData } from '@/shared/lib/hooks/useCategoryData.ts';
 
 export const CategoryMovies = () => {
   const navigate = useNavigate();

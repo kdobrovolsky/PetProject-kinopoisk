@@ -1,5 +1,5 @@
 import s from './MovieDetailsSimilar.module.css';
-import { useFetchSimilarQuery } from '@/features/api/tmdbApi.ts';
+import { useFetchSimilarQuery } from '@/shared/api/tmdbApi.ts';
 type Props = {
   movieId: number;
 };

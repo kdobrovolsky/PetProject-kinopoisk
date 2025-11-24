@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
-import { tmdbApi } from '@/features/api/tmdbApi.ts';
+import { tmdbApi } from '@/shared/api/tmdbApi.ts';
 import { appReducer, appSlice } from '@/App/model/appSlice.ts';
 
 export const store = configureStore({

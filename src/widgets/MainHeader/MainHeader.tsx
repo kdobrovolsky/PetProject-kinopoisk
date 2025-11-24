@@ -1,6 +1,6 @@
 import s from '@/pages/Main/Main.module.css';
 import { type ChangeEvent, type FormEvent, useEffect, useState } from 'react';
-import type { TMDBMovie, TMDBMoviesResponse } from '@/features/api/tmdbApi.types.ts';
+import type { TMDBMovie, TMDBMoviesResponse } from '@/shared/api/tmdbApi.types.ts';
 import { useNavigate } from 'react-router-dom';
 import { SearchForm } from '@/shared/SearchForm/SearchForm.tsx';
 
