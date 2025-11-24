@@ -1,14 +1,18 @@
 import s from '/src/pages/Main/Main.module.css';
 import { useNavigate } from 'react-router-dom';
-import { useFetchPopularMoviesQuery } from '@/features/api/tmdbApi.ts';
 import { MovieCard } from '@/entities/movie/ui/MovieCard/MovieCard.tsx';
+import type { TMDBMoviesResponse } from '@/features/api/tmdbApi.types.ts';
 
-export const PopularMovies = () => {
+type Props = {
+  data: TMDBMoviesResponse | undefined;
+};
+
+export const PopularMovies = ({ data }: Props) => {
   const navigate = useNavigate();
   const handleViewMore = () => {
     navigate('/category/popular');
   };
-  const { data } = useFetchPopularMoviesQuery();
+
   return (
     <section className={s.mainContent}>
       <div className={s.sectionHeader}>

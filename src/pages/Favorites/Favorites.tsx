@@ -4,8 +4,6 @@ import { FavoriteMoviesCard } from '@/pages/Favorites';
 
 export const Favorites = () => {
   const { favorites } = useFavorites();
-
-  console.log(favorites, 'favoritesfavorites');
   return (
     <div className={s.container}>
       <h1 className={s.title}>My Favorite Movies</h1>

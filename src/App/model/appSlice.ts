@@ -1,10 +1,10 @@
 import { createSlice, isFulfilled, isPending, isRejected } from '@reduxjs/toolkit';
-import type { RequestStatus } from '@/features/api/tmdbApi.types.ts';
+import type { LoadingState } from '@/features/api/tmdbApi.types.ts';
 
 export const appSlice = createSlice({
   name: 'app',
   initialState: {
-    status: 'idle' as RequestStatus,
+    status: 'idle' as LoadingState,
     error: null as null | string,
   },
   extraReducers: builder => {

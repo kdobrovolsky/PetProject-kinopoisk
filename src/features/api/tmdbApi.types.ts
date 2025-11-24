@@ -201,5 +201,3 @@ export type GenresResponse = {
     name: string;
   }>;
 };
-
-export type RequestStatus = 'idle' | 'loading' | 'succeeded' | 'failed';

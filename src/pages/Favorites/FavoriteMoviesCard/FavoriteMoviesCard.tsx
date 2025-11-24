@@ -9,7 +9,8 @@ type Props = {
 export const FavoriteMoviesCard = ({ className }: Props) => {
   const { removeFavorite, favorites } = useFavorites();
   const navigate = useNavigate();
-  const handleFavoriteClick = (movieId: number) => {
+  const handleFavoriteClick = (e: React.MouseEvent, movieId: number) => {
+    e.stopPropagation();
     removeFavorite(movieId);
   };
 
@@ -33,7 +34,7 @@ export const FavoriteMoviesCard = ({ className }: Props) => {
           )}
 
           <button
-            onClick={() => handleFavoriteClick(movie.id)}
+            onClick={e => handleFavoriteClick(e, movie.id)}
             className={`${s.favoriteButton} ${s.active}`}
           >
             🧡

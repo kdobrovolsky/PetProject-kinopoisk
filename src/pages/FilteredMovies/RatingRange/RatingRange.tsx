@@ -1,6 +1,6 @@
 import s from './RatingRange.module.css';
 import { debounce, Slider } from '@mui/material';
-import { useCallback } from 'react';
+import { useEffect, useRef } from 'react';
 
 type Props = {
   minRating: string;
@@ -9,12 +9,17 @@ type Props = {
 };
 
 export const RatingRange = ({ minRating, maxRating, onRatingChange }: Props) => {
-  const debouncedRatingChange = useCallback(
+  const debouncedRatingChangeRef = useRef(
     debounce((min: string, max: string) => {
       onRatingChange(min, max);
-    }, 200),
-    [onRatingChange]
+    }, 300)
   );
+
+  useEffect(() => {
+    return () => {
+      debouncedRatingChangeRef.current.clear();
+    };
+  }, []);
 
   return (
     <div className={s.filterGroup}>
@@ -25,7 +30,8 @@ export const RatingRange = ({ minRating, maxRating, onRatingChange }: Props) => 
       <Slider
         value={[Number(minRating), Number(maxRating)]}
         onChange={(_e, newValue) => {
-          debouncedRatingChange(newValue[0].toString(), newValue[1].toString());
+          const [min, max] = newValue as number[];
+          debouncedRatingChangeRef.current(min.toString(), max.toString());
         }}
         min={0}
         max={10}

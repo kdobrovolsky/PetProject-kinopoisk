@@ -7,7 +7,6 @@ import type {
   SearchMoviesParams,
   SimilarMoviesResponse,
   TMDBMoviesResponse,
-  TMDBUpcomingResponse,
 } from '@/features/api/tmdbApi.types.ts';
 
 export const tmdbApi = createApi({
@@ -19,6 +18,7 @@ export const tmdbApi = createApi({
       return headers;
     },
   }),
+  tagTypes: ['Movies', 'MovieDetails', 'Credits', 'Similar', 'Genres'],
   endpoints: build => ({
     fetchPopularMovies: build.query<TMDBMoviesResponse, number | void>({
       query: (page = 1) => {
@@ -26,37 +26,48 @@ export const tmdbApi = createApi({
           url: `movie/popular?page=${page}`,
         };
       },
+      providesTags: ['Movies'],
     }),
     fetchTopRated: build.query<TMDBMoviesResponse, number | void>({
       query: (page = 1) => `movie/top_rated?page=${page}`,
+      providesTags: ['Movies'],
     }),
-    fetchUpcoming: build.query<TMDBUpcomingResponse, number | void>({
+    fetchUpcoming: build.query<TMDBMoviesResponse, number | void>({
       query: (page = 1) => `movie/upcoming?page=${page}`,
+      providesTags: ['Movies'],
     }),
-    fetchNowPlaying: build.query<TMDBUpcomingResponse, number | void>({
+    fetchNowPlaying: build.query<TMDBMoviesResponse, number | void>({
       query: (page = 1) => `movie/now_playing?page=${page}`,
+      providesTags: ['Movies'],
     }),
-    fetchSearchMovies: build.query<TMDBUpcomingResponse, SearchMoviesParams>({
+    fetchSearchMovies: build.query<TMDBMoviesResponse, SearchMoviesParams>({
       query: params => {
         return {
           url: 'search/movie',
           params,
         };
       },
+      providesTags: (_result, _error, arg) => [
+        'Movies',
+        { type: 'Movies', id: `search-${arg.query}` },
+      ],
     }),
     fetchCredits: build.query<MovieCreditsResponse, number>({
       query: movie_id => `movie/${movie_id}/credits`,
+      providesTags: (_result, _error, movieId) => [{ type: 'Credits', id: movieId }],
     }),
     fetchSimilar: build.query<SimilarMoviesResponse, number>({
       query: movie_id => `movie/${movie_id}/similar`,
+      providesTags: (_result, _error, movieId) => [{ type: 'Similar', id: movieId }],
     }),
     fetchMovieDetails: build.query<MovieDetailsResponse, number>({
       query: movie_id => `movie/${movie_id}`,
+      providesTags: (_result, _error, movieId) => [{ type: 'MovieDetails', id: movieId }],
     }),
     fetchMovieList: build.query<GenresResponse, void>({
       query: () => `genre/movie/list`,
+      providesTags: ['Genres'],
     }),
-
     fetchDiscoverMovies: build.query<TMDBMoviesResponse, DiscoverMoviesParams>({
       query: params => {
         return {
@@ -64,6 +75,10 @@ export const tmdbApi = createApi({
           params,
         };
       },
+      providesTags: (_result, _error, arg) => [
+        'Movies',
+        { type: 'Movies', id: `discover-${JSON.stringify(arg)}` },
+      ],
     }),
   }),
 });

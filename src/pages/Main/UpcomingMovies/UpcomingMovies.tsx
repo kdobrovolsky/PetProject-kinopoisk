@@ -1,10 +1,13 @@
 import s from '/src/pages/Main/Main.module.css';
 import { useNavigate } from 'react-router-dom';
-import { useFetchUpcomingQuery } from '@/features/api/tmdbApi.ts';
 import { MovieCard } from '@/entities/movie/ui/MovieCard/MovieCard.tsx';
+import type { TMDBMoviesResponse } from '@/features/api/tmdbApi.types.ts';
 
-export const UpcomingMovies = () => {
-  const { data } = useFetchUpcomingQuery();
+type Props = {
+  data: TMDBMoviesResponse | undefined;
+};
+
+export const UpcomingMovies = ({ data }: Props) => {
   const navigate = useNavigate();
   const handleViewMore = () => {
     navigate('/category/upcoming');

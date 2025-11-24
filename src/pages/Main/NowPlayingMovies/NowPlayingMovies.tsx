@@ -1,10 +1,13 @@
 import s from '/src/pages/Main/Main.module.css';
 import { useNavigate } from 'react-router-dom';
-import { useFetchNowPlayingQuery } from '@/features/api/tmdbApi.ts';
 import { MovieCard } from '@/entities/movie/ui/MovieCard/MovieCard.tsx';
+import type { TMDBMoviesResponse } from '@/features/api/tmdbApi.types.ts';
 
-export const NowPlayingMovies = () => {
-  const { data } = useFetchNowPlayingQuery();
+type Props = {
+  data: TMDBMoviesResponse | undefined;
+};
+
+export const NowPlayingMovies = ({ data }: Props) => {
   const navigate = useNavigate();
   const handleViewMore = () => {
     navigate('/category/now-playing');

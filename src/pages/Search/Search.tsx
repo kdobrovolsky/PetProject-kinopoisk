@@ -23,14 +23,14 @@ export const Search = () => {
       setPage(1);
       triggerSearch({ query: queryValue, page: 1 });
     }
-  }, [queryValue]);
+  }, [queryValue, triggerSearch]);
 
   useEffect(() => {
     if (page >= 1 && searchQuery.trim()) {
       triggerSearch({ query: searchQuery, page });
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-  }, [page]);
+  }, [page, triggerSearch]);
 
   const handleSearchSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();

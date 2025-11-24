@@ -1,10 +1,13 @@
 import s from '/src/pages/Main/Main.module.css';
 import { useNavigate } from 'react-router-dom';
-import { useFetchTopRatedQuery } from '@/features/api/tmdbApi.ts';
 import { MovieCard } from '@/entities/movie/ui/MovieCard/MovieCard.tsx';
+import type { TMDBMoviesResponse } from '@/features/api/tmdbApi.types.ts';
 
-export const TopRatedMovies = () => {
-  const { data } = useFetchTopRatedQuery();
+type Props = {
+  data: TMDBMoviesResponse | undefined;
+};
+
+export const TopRatedMovies = ({ data }: Props) => {
   const navigate = useNavigate();
   const handleViewMore = () => {
     navigate('/category/topRated');
