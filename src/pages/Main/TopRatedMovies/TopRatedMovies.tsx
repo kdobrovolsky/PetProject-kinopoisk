@@ -10,7 +10,7 @@ type Props = {
 export const TopRatedMovies = ({ data }: Props) => {
   const navigate = useNavigate();
   const handleViewMore = () => {
-    navigate('/category/topRated');
+    navigate('/category/top-rated');
   };
   return (
     <section className={s.mainContent}>

@@ -24,7 +24,6 @@ export const CategoryPageSkeleton = () => {
           ))}
         </div>
 
-        {/* Скелетон пагинации */}
         <div className={s.paginationSkeleton}>
           {Array.from({ length: 5 }).map((_, index) => (
             <Skeleton key={index} className={s.paginationButtonSkeleton} />

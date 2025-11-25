@@ -6,11 +6,18 @@ import { Pagination } from '@/common';
 import { GenreList, SortSelect, RatingRange } from '@/pages/FilteredMovies';
 import { MovieCard } from '@/entities/movie/ui';
 import { INITIAL_FILTERS } from '@/shared/constants/moviesConstants/moviesConstants.ts';
+import { FilteredSkeleton } from '@/pages/FilteredMovies/FilteredSkeletons.tsx';
 
 export const FilteredMovies = () => {
   const [filters, setFilters] = useState(INITIAL_FILTERS);
-  const { data: discoverData } = useFetchDiscoverMoviesQuery(filters);
-  const { data: genresData } = useFetchMovieListQuery();
+  const { data: discoverData, isLoading: discoverLoading } = useFetchDiscoverMoviesQuery(filters);
+  const { data: genresData, isLoading: genresLoading } = useFetchMovieListQuery();
+
+  const isLoading = discoverLoading || genresLoading;
+
+  if (isLoading) {
+    return <FilteredSkeleton />;
+  }
 
   const handleGenreToggle = (genreId: string) => {
     const currentGenres = filters.with_genres.split(',').filter(Boolean);
