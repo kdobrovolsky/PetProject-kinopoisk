@@ -139,6 +139,7 @@ input, button, textarea, select {
   --border-dark: #3c4a69;
 }
 
+
 /* Auto-respect user's system preference unless overridden */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme]) {
