@@ -1,73 +1,49 @@
-# React + TypeScript + Vite
+🎬 Kinopoisk TMDB
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A movie discovery web app built with React + TypeScript + RTK Query using FSD architecture and deployed on Vercel.
 
-Currently, two official plugins are available:
+<p align="left"> <img src="https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=white"/> <img src="https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white"/> <img src="https://img.shields.io/badge/Redux Toolkit-RTK Query-764ABC?style=for-the-badge&logo=redux&logoColor=white"/> <img src="https://img.shields.io/badge/Vercel-Deployed-000000?style=for-the-badge&logo=vercel&logoColor=white"/> </p>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🔗 Live Demo: https://pet-project-kinopoisk.vercel.app/
 
-## React Compiler
+✨ Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+✔️ Movie categories (popular, trending, top-rated)
+✔️ Movie search
+✔️ Filters: genres, rating range, sorting
+✔️ Responsive filter panel
+✔️ Movie details: description, genres, trailers, similar movies
+✔️ Skeleton loading
+✔️ Dark / light theme
+✔️ Full responsiveness
 
-## Expanding the ESLint configuration
+🧩 Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+React 19 + TypeScript
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Redux Toolkit (Slices & RTK Query)
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+React Router v7
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+CSS Modules
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Feature-Sliced Design (FSD)
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Prettier
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Vercel
+
+📁 Project Architecture (FSD)
+src/
+ ├── app/         # App initialization
+ ├── pages/       # Application pages
+ ├── widgets/     # Large UI blocks (Header, FilterPanel, etc.)
+ ├── features/    # Functional features (filters, search, sorting)
+ ├── entities/    # Core domain entities (Movie, Genre, Person)
+ └── shared/      # UI components, helpers, utils
+
+🚀 Installation & Setup
+git clone https://github.com/USERNAME/REPO.git
+cd REPO
+pnpm install
+pnpm run dev
