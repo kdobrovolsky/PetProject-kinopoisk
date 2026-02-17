@@ -38,7 +38,7 @@
     background: var(--accent-color);
     color: var(--text-primary);
     border-color: var(--accent-color);
-    box-shadow: 0 4px 15px var(--shadow-sm);
+    box-shadow: var(--shadow-md);
 }
 
 

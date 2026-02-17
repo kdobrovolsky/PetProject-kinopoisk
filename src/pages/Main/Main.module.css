@@ -112,7 +112,7 @@
 .viewMoreButton:hover {
     background: var(--accent-hover);
     transform: translateY(-2px);
-    box-shadow: 0 4px 15px var(--shadow-sm);
+    box-shadow: var(--shadow-md);
 }
 
 .viewMoreButton:hover::before {
@@ -134,7 +134,7 @@
     background: var(--bg-secondary);
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 4px 12px var(--shadow-sm);
+    box-shadow: var(--shadow-md);
     transition: all 0.3s ease;
     cursor: pointer;
     border: 1px solid var(--border-color);
@@ -142,7 +142,7 @@
 
 .movieCard:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 20px var(--shadow-sm);
+    box-shadow: var(--shadow-lg);
 }
 
 .moviePoster {

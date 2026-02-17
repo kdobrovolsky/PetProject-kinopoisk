@@ -32,7 +32,7 @@
     background: var(--accent-hover);
     border-color: var(--border-color);
     transform: scale(1.05);
-    box-shadow: 0 4px 12px var(--shadow-sm);
+    box-shadow: var(--shadow-md);
 }
 
 .themeToggle:active {
@@ -41,7 +41,7 @@
 
 .themeToggle:focus {
     outline: none;
-    box-shadow: 0 0 0 2px var(--shadow-sm);
+    box-shadow: 0 0 0 2px var(--accent-light);
 }
 
 .icon {
