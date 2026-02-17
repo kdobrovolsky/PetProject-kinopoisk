@@ -1,5 +1,6 @@
 import s from './RatingRange.module.css';
 import { Slider } from '@mui/material';
+import { useEffect, useState } from 'react';
 
 type Props = {
   minRating: string;
@@ -8,15 +9,25 @@ type Props = {
 };
 
 export const RatingRange = ({ minRating, maxRating, onRatingChange }: Props) => {
+  const [range, setRange] = useState<[number, number]>([Number(minRating), Number(maxRating)]);
+
+  useEffect(() => {
+    setRange([Number(minRating), Number(maxRating)]);
+  }, [minRating, maxRating]);
+
   return (
     <div className={s.filterGroup}>
       <div className={s.filterTitle}>Rating</div>
       <div className={s.ratingValue}>
-        {minRating} – {maxRating}
+        {range[0]} - {range[1]}
       </div>
       <Slider
-        value={[Number(minRating), Number(maxRating)]}
+        value={range}
         onChange={(_e, newValue) => {
+          const [min, max] = newValue as number[];
+          setRange([min, max]);
+        }}
+        onChangeCommitted={(_e, newValue) => {
           const [min, max] = newValue as number[];
           onRatingChange(min.toString(), max.toString());
         }}
@@ -29,4 +40,3 @@ export const RatingRange = ({ minRating, maxRating, onRatingChange }: Props) => 
     </div>
   );
 };
-
