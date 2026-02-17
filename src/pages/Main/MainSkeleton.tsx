@@ -29,7 +29,7 @@ export const MovieSectionSkeleton = () => {
 export const MainPageSkeleton = () => {
   return (
     <div className={s.container}>
-      <MainHeaderSkeleton />
+      <MainSkeleton />
       <MovieSectionSkeleton />
       <MovieSectionSkeleton />
       <MovieSectionSkeleton />

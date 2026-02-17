@@ -6,6 +6,8 @@ import { useSearchParams } from 'react-router';
 import { SearchResults } from '@/pages/Search';
 import { MovieCard } from '@/entities/movie/ui';
 import { SearchForm } from '@/shared';
+import { normalizeSearchQuery, searchQuerySchema } from '@/shared/validation/tmdbSchemas.ts';
+import { toast } from 'react-toastify';
 
 export const Search = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -18,35 +20,58 @@ export const Search = () => {
 
   useEffect(() => {
     if (queryValue) {
+      const parsedQuery = searchQuerySchema.safeParse(queryValue);
+
+      if (!parsedQuery.success) {
+        setIsSearching(false);
+        setSearchQuery('');
+        reset();
+        toast('Search query must contain from 1 to 100 characters', {
+          type: 'warning',
+          theme: 'colored',
+        });
+        return;
+      }
+
+      const normalizedQuery = parsedQuery.data;
       setIsSearching(true);
-      setSearchQuery(queryValue);
+      setSearchQuery(normalizedQuery);
       setPage(1);
-      triggerSearch({ query: queryValue, page: 1 });
     }
-  }, [queryValue, triggerSearch]);
+  }, [queryValue, reset, triggerSearch]);
 
   useEffect(() => {
-    if (page >= 1 && searchQuery.trim()) {
+    if (isSearching && page >= 1 && searchQuery.trim()) {
       triggerSearch({ query: searchQuery, page });
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-  }, [page, triggerSearch]);
+  }, [isSearching, page, searchQuery, triggerSearch]);
 
   const handleSearchSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (searchQuery.trim()) {
-      setIsSearching(true);
-      setPage(1);
-      await triggerSearch({ query: searchQuery, page: 1 });
+    const parsedQuery = searchQuerySchema.safeParse(searchQuery);
+
+    if (!parsedQuery.success) {
+      toast('Search query must contain from 1 to 100 characters', {
+        type: 'warning',
+        theme: 'colored',
+      });
+      return;
     }
+
+    const normalizedQuery = normalizeSearchQuery(searchQuery);
+    setIsSearching(true);
+    setSearchQuery(normalizedQuery);
+    setPage(1);
   };
 
   const handleSearchInput = (e: ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setSearchQuery(e.target.value);
+    const value = e.target.value.slice(0, 100);
+    setSearchQuery(value);
+
     if (!value.trim()) {
       setIsSearching(false);
-      reset(); //с помощью резет сбрасываем сост запроса
+      reset();
     }
   };
 
@@ -63,7 +88,6 @@ export const Search = () => {
         handleSearchInput={handleSearchInput}
         searchQuery={searchQuery}
       />
-      {/*условный рендр вынесен в отдельный компонент*/}
       <SearchResults isSearching={isSearching} searchQuery={searchQuery} hasResults={hasResults} />
 
       {shouldShowResults && (
@@ -80,4 +104,3 @@ export const Search = () => {
     </div>
   );
 };
-

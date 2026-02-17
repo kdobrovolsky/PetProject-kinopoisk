@@ -15,6 +15,7 @@ export const SearchForm = ({handleSearchInput,handleSearchSubmit,searchQuery}:Pr
                 type="search"
                 value={searchQuery}
                 onChange={handleSearchInput}
+                maxLength={100}
                 placeholder="Search for movies..."
                 className={s.searchInput}
             />

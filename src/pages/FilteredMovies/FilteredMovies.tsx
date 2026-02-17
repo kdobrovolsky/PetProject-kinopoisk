@@ -7,15 +7,24 @@ import { MovieCard } from '@/entities/movie/ui';
 import { INITIAL_FILTERS } from '@/shared/constants/moviesConstants/moviesConstants.ts';
 import { FilteredSkeleton } from '@/pages/FilteredMovies/FilteredSkeletons.tsx';
 import { useScrollToTopOnChange } from '@/shared/lib/hooks';
+import { discoverFiltersSchema, type DiscoverFilters, normalizeDiscoverFilters } from '@/shared/validation/tmdbSchemas.ts';
 
 export const FilteredMovies = () => {
-  const [filters, setFilters] = useState(INITIAL_FILTERS);
+  const [filters, setFilters] = useState<DiscoverFilters>(() => normalizeDiscoverFilters(INITIAL_FILTERS));
   const [isOpen, setIsOpen] = useState(false);
   const { data: discoverData, isLoading: discoverLoading } = useFetchDiscoverMoviesQuery(filters);
   const { data: genresData, isLoading: genresLoading } = useFetchMovieListQuery();
   const isLoading = discoverLoading || genresLoading;
 
   useScrollToTopOnChange([filters.page]);
+
+  const updateFilters = (updater: (prev: DiscoverFilters) => unknown) => {
+    setFilters(prev => {
+      const next = updater(prev);
+      const parsed = discoverFiltersSchema.safeParse(next);
+      return parsed.success ? parsed.data : prev;
+    });
+  };
 
   if (isLoading) {
     return <FilteredSkeleton />;
@@ -28,11 +37,11 @@ export const FilteredMovies = () => {
       ? currentGenres.filter(id => id !== genreId)
       : [...currentGenres, genreId];
 
-    setFilters({
-      ...filters,
+    updateFilters(prev => ({
+      ...prev,
       with_genres: updated.join(','),
       page: 1,
-    });
+    }));
   };
 
   return (
@@ -45,19 +54,19 @@ export const FilteredMovies = () => {
         <div className={s.mobileFiltersInner}>
           <SortSelect
             value={filters.sort_by}
-            onChange={sortBy => setFilters({ ...filters, sort_by: sortBy })}
+            onChange={sortBy => updateFilters(prev => ({ ...prev, sort_by: sortBy }))}
           />
 
           <RatingRange
             minRating={filters['vote_average.gte']}
             maxRating={filters['vote_average.lte']}
             onRatingChange={(min, max) =>
-              setFilters({
-                ...filters,
+              updateFilters(prev => ({
+                ...prev,
                 'vote_average.gte': min,
                 'vote_average.lte': max,
                 page: 1,
-              })
+              }))
             }
           />
 
@@ -71,7 +80,10 @@ export const FilteredMovies = () => {
             Apply Filters
           </button>
 
-          <button className={s.resetButton} onClick={() => setFilters(INITIAL_FILTERS)}>
+          <button
+            className={s.resetButton}
+            onClick={() => setFilters(normalizeDiscoverFilters(INITIAL_FILTERS))}
+          >
             Reset Filters
           </button>
         </div>
@@ -79,19 +91,19 @@ export const FilteredMovies = () => {
       <div className={s.filters}>
         <SortSelect
           value={filters.sort_by}
-          onChange={sortBy => setFilters({ ...filters, sort_by: sortBy })}
+          onChange={sortBy => updateFilters(prev => ({ ...prev, sort_by: sortBy }))}
         />
 
         <RatingRange
           minRating={filters['vote_average.gte']}
           maxRating={filters['vote_average.lte']}
           onRatingChange={(min, max) =>
-            setFilters({
-              ...filters,
+            updateFilters(prev => ({
+              ...prev,
               'vote_average.gte': min,
               'vote_average.lte': max,
               page: 1,
-            })
+            }))
           }
         />
 
@@ -101,7 +113,10 @@ export const FilteredMovies = () => {
           onGenreToggle={handleGenreToggle}
         />
 
-        <button className={s.resetButton} onClick={() => setFilters(INITIAL_FILTERS)}>
+        <button
+          className={s.resetButton}
+          onClick={() => setFilters(normalizeDiscoverFilters(INITIAL_FILTERS))}
+        >
           Reset Filters
         </button>
       </div>
@@ -111,11 +126,10 @@ export const FilteredMovies = () => {
 
         <Pagination
           currentPage={filters.page}
-          setCurrentPage={p => setFilters({ ...filters, page: p })}
+          setCurrentPage={p => updateFilters(prev => ({ ...prev, page: p }))}
           pagesCount={discoverData?.total_pages || 1}
         />
       </div>
     </div>
   );
 };
-
