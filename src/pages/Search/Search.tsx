@@ -1,7 +1,7 @@
 import { type ChangeEvent, type FormEvent, useEffect, useState } from 'react';
 import { useLazyFetchSearchMoviesQuery } from '@/shared/api/tmdbApi.ts';
 import s from './Search.module.css';
-import { Pagination } from '@/common';
+import { Pagination } from '@/shared';
 import { useSearchParams } from 'react-router';
 import { SearchResults } from '@/pages/Search';
 import { MovieCard } from '@/entities/movie/ui';
@@ -80,3 +80,4 @@ export const Search = () => {
     </div>
   );
 };
+

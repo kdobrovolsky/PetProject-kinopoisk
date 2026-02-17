@@ -35,3 +35,4 @@ export const MovieDetailsActor = ({ movieId }: Props) => {
     </section>
   );
 };
+

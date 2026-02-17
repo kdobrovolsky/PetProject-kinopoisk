@@ -24,3 +24,4 @@ export const NowPlayingMovies = ({ data }: Props) => {
     </section>
   );
 };
+

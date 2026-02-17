@@ -1,5 +1,5 @@
 import React, { createContext, useContext } from 'react';
-import { useTheme } from '@/common/components/theme/useTheme/useTheme.tsx';
+import { useTheme } from '@/shared/theme/useTheme/useTheme.tsx';
 
 interface ThemeContextType {
   isDark: boolean;
@@ -21,3 +21,4 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
   return <ThemeContext.Provider value={theme}>{children}</ThemeContext.Provider>;
 };
+

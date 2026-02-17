@@ -1,7 +1,7 @@
 import { useFetchDiscoverMoviesQuery, useFetchMovieListQuery } from '@/shared/api/tmdbApi.ts';
 import { useState } from 'react';
 import s from './FilteredMovies.module.css';
-import { Pagination } from '@/common';
+import { Pagination } from '@/shared';
 import { GenreList, RatingRange, SortSelect } from '@/pages/FilteredMovies';
 import { MovieCard } from '@/entities/movie/ui';
 import { INITIAL_FILTERS } from '@/shared/constants/moviesConstants/moviesConstants.ts';
@@ -118,3 +118,4 @@ export const FilteredMovies = () => {
     </div>
   );
 };
+

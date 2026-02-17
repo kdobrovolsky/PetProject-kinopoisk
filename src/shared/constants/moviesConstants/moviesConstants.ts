@@ -29,3 +29,4 @@ export const RATING_THRESHOLDS = {
   MEDIUM: 5,
   LOW: 0,
 } as const;
+

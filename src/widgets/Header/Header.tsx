@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Path } from '@/App/Routing/Routing.tsx';
+import { Path } from '@/app/Routing/Routing.tsx';
 import s from './Header.module.css';
 import { NavLink } from 'react-router-dom';
 import { ThemeToggle } from '@/features';
@@ -77,3 +77,4 @@ export const Header = () => {
     </header>
   );
 };
+

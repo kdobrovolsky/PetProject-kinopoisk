@@ -201,3 +201,4 @@ export type GenresResponse = {
     name: string;
   }>;
 };
+

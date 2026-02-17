@@ -54,3 +54,4 @@ export const MainHeader = ({ data }: Props) => {
     </section>
   );
 };
+

@@ -34,3 +34,4 @@ export const getPaginationPages = (currentPage: number, pagesCount: number): (nu
 
   return pages;
 };
+

@@ -5,3 +5,4 @@ export const useScrollToTopOnChange = (deps: unknown[]) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, deps);
 };
+

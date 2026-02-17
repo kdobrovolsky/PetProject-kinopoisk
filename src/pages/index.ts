@@ -6,3 +6,4 @@ export { Search } from './Search/Search.tsx';
 export { NotFound } from './NotFound/NotFound.tsx';
 export { MovieDetails } from './MovieDetails/MovieDetails.tsx';
 export { CategorySkeleton } from './CategoryMovies/CategorySkeletons.tsx';
+

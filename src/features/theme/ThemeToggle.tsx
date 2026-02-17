@@ -1,5 +1,5 @@
 import s from './ThemeToggle.module.css';
-import { useThemeContext } from '@/common/components/theme';
+import { useThemeContext } from '@/shared/theme';
 
 export const ThemeToggle = () => {
   const { isDark, toggleTheme } = useThemeContext();
@@ -14,3 +14,4 @@ export const ThemeToggle = () => {
     </button>
   );
 };
+

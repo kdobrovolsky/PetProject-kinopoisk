@@ -3,10 +3,13 @@ export { useFavorites } from './lib/hooks/useFavorites.ts';
 export { useCategoryData } from './lib/hooks/useCategoryData.ts';
 export { SearchForm } from './SearchForm/SearchForm.tsx';
 export { LianerProgress } from './ui/LianerProgress/LianerProgress.tsx';
+export { Pagination } from './ui/Pagination/Pagination.tsx';
 export { createAppSlice } from './utils/createAppSlice.ts';
 export { getPaginationPages } from './utils/getPaginationPages.ts';
+export { ThemeProvider } from './theme/themeProvider/themeProvider.tsx';
 export * from './api/tmdbApi.ts';
 export * from './api/tmdbApi.types.ts';
 export { isErrorWithProperty } from './utils/isErrorWithProperty.ts';
 export { isErrorWithMessage } from './utils/isErrorWithMessage.ts';
 export { baseApi } from './api/baseApi/baseApi.ts';
+

@@ -26,3 +26,4 @@ export const GenreList = ({ genres, selectedGenres, onGenreToggle }: Props) => {
     </div>
   );
 };
+

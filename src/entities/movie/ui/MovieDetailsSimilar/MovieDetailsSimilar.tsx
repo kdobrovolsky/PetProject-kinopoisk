@@ -33,3 +33,4 @@ export const MovieDetailsSimilar = ({ movieId }: Props) => {
     </section>
   );
 };
+

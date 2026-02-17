@@ -30,3 +30,4 @@ export const Routing = () => (
     <Route path={Path.NotFound} element={<NotFound />} />
   </Routes>
 );
+

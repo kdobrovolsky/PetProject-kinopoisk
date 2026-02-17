@@ -8,3 +8,4 @@ export function isErrorWithMessage(error: unknown): error is { message: string }
     typeof (error as Record<string, unknown>).message === 'string' // Убеждаемся, что это строка
   );
 }
+

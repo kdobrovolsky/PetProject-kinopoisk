@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Path } from '@/App/Routing/Routing';
+import { Path } from '@/app/Routing/Routing';
 import s from './NotFound.module.css';
 
 export const NotFound = () => {
@@ -16,3 +16,4 @@ export const NotFound = () => {
     </div>
   );
 };
+

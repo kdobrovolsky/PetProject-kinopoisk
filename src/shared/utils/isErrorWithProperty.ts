@@ -9,3 +9,4 @@ export function isErrorWithProperty<T extends string>(
     typeof (error as Record<string, unknown>)[property] === 'string'
   );
 }
+

@@ -29,3 +29,4 @@ export const useCategoryData = ({ page, type }: Props) => {
       return popularQuery;
   }
 };
+

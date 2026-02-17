@@ -42,3 +42,4 @@ export const RatingRange = ({ minRating, maxRating, onRatingChange }: Props) => 
     </div>
   );
 };
+

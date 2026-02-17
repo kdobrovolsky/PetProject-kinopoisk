@@ -71,3 +71,4 @@ export const MovieCard = ({ data, limit, className }: PropsMovieCard) => {
     </div>
   );
 };
+

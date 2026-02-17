@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { selectAppStatus } from '@/App/model/appSlice.ts';
+import { selectAppStatus } from '@/app/model/appSlice.ts';
 import s from './LianerProgress.module.css';
 
 export const LianerProgress = () => {
@@ -16,3 +16,4 @@ export const LianerProgress = () => {
     </div>
   );
 };
+

@@ -1,10 +1,10 @@
-import '@/App.css';
+import '@/app/styles/App.css';
 import s from './App.module.css';
 import { ToastContainer } from 'react-toastify';
 import { LianerProgress } from '@/shared';
 import { Footer, Header } from '@/widgets';
-import { Routing } from '@/App';
-import { ThemeProvider } from '@/common';
+import { Routing } from '@/app';
+import { ThemeProvider } from '@/shared';
 
 export const App = () => {
   return (
@@ -21,3 +21,4 @@ export const App = () => {
     </ThemeProvider>
   );
 };
+

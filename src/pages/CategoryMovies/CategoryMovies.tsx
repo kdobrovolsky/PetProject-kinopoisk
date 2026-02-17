@@ -2,7 +2,7 @@ import s from './CategoryMovies.module.css';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router';
 import { useEffect, useState } from 'react';
-import { Pagination } from '@/common';
+import { Pagination } from '@/shared';
 import { MOVIE_CATEGORIES } from '@/features';
 import { MovieCard } from '@/entities/movie/ui';
 import { categoriesTitle, useCategoryData } from '@/shared';
@@ -46,3 +46,4 @@ export const CategoryMovies = () => {
     </div>
   );
 };
+

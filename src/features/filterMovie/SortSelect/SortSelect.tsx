@@ -20,3 +20,4 @@ export const SortSelect = ({ value, onChange }: Props) => {
     </div>
   );
 };
+

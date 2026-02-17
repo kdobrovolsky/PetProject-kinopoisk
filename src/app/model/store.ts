@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
-import { appReducer, appSlice } from '@/App/model/appSlice.ts';
+import { appReducer, appSlice } from '@/app/model/appSlice.ts';
 import { baseApi } from '@/shared';
 
 export const store = configureStore({
@@ -12,3 +12,4 @@ export const store = configureStore({
 });
 
 setupListeners(store.dispatch);
+

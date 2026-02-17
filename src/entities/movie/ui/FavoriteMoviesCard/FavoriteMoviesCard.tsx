@@ -60,3 +60,4 @@ export const FavoriteMoviesCard = ({ className }: Props) => {
     </div>
   );
 };
+

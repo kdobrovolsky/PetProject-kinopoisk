@@ -86,3 +86,4 @@ export const {
   useFetchDiscoverMoviesQuery,
   useFetchMovieListQuery,
 } = tmdbApi;
+

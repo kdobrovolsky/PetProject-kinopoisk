@@ -25,3 +25,4 @@ export const UpcomingMovies = ({ data }: Props) => {
     </section>
   );
 };
+

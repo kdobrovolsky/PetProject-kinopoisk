@@ -48,3 +48,4 @@ export const useFavorites = () => {
 
   return { favorites, addFavorite, removeFavorite, isFavorite };
 };
+

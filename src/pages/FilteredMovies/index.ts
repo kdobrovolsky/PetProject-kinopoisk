@@ -1,4 +1,5 @@
 export { FilteredMovies } from './FilteredMovies.tsx';
-export { GenreList } from '@/entities/filterMovie/GenreList/GenreList.tsx';
-export { SortSelect } from '@/entities/filterMovie/SortSelect/SortSelect.tsx';
-export { RatingRange } from '@/entities/filterMovie/RatingRange/RatingRange.tsx';
+export { GenreList } from '@/features/filterMovie/GenreList/GenreList.tsx';
+export { SortSelect } from '@/features/filterMovie/SortSelect/SortSelect.tsx';
+export { RatingRange } from '@/features/filterMovie/RatingRange/RatingRange.tsx';
+
