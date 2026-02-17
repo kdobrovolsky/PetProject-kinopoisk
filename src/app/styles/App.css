@@ -103,13 +103,6 @@ input, button, textarea, select {
   /* borders */
   --border-color: var(--border-light);
 
-  /* radii and shadows (short aliases) */
-  --radius-md: var(--radius-md);
-  --radius-lg: var(--radius-lg);
-
-  --shadow-sm: var(--shadow-sm);
-  --shadow-md: var(--shadow-md);
-  --shadow-lg: var(--shadow-lg);
 }
 
 [data-theme="dark"] {
@@ -295,4 +288,3 @@ button:disabled {
   box-shadow: var(--shadow-sm);
   padding: var(--space-md);
 }
-
